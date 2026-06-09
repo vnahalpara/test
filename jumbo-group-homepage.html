@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#0a0e1a" />
+<title>Jumbo Group — Powering Progress Across the Middle East</title>
+<meta name="description" content="Jumbo Group is a diversified technology, enterprise, and distribution powerhouse advancing the Middle East since 1974." />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700&family=Noto+Kufi+Arabic:wght@300;400;600&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   JUMBO GROUP — Corporate Homepage Concept
+   Single-file build: HTML + CSS + JS
+   ============================================================ */
+
+:root{
+  --ink:#0a0e1a;
+  --ink-2:#10182b;
+  --ink-soft:#1a2236;
+  --paper:#ffffff;
+  --paper-2:#f6f7f9;
+  --paper-3:#eef0f4;
+  --gold:#c8a45c;
+  --gold-soft:#e3ca93;
+  --accent:#2f6df6;
+  --accent-2:#4f8bff;
+  --text-dark:#0c1322;
+  --text-muted:#5a6275;
+  --text-light:#aab2c5;
+  --line:rgba(255,255,255,.12);
+  --line-dark:rgba(12,19,34,.10);
+  --max:1280px;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"Inter",system-ui,-apple-system,sans-serif;
+  --arabic:"Noto Kufi Arabic",sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation-duration:.001ms!important;transition-duration:.001ms!important}
+}
+
+body{
+  font-family:var(--sans);
+  background:var(--ink);
+  color:var(--text-dark);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+html[dir="rtl"] body{font-family:var(--arabic)}
+
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* Focus accessibility */
+:focus-visible{outline:2px solid var(--accent-2);outline-offset:3px;border-radius:4px}
+.skip-link{
+  position:absolute;left:-9999px;top:0;z-index:9999;
+  background:var(--paper);color:var(--ink);padding:14px 22px;border-radius:0 0 8px 0;font-weight:600;
+}
+.skip-link:focus{left:0}
+
+.container{max-width:var(--max);margin:0 auto;padding:0 clamp(20px,5vw,64px)}
+
+/* Section rhythm — Apple-style generous spacing */
+section{position:relative}
+.section-pad{padding:clamp(80px,11vw,168px) 0}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;
+  color:var(--gold);margin-bottom:24px;
+}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--gold);opacity:.7}
+
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-height:1.08}
+html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] h3{font-family:var(--arabic);font-weight:600}
+
+.h-display{font-size:clamp(2.6rem,6.4vw,5.6rem)}
+.h-section{font-size:clamp(2rem,4.2vw,3.4rem)}
+.lead{font-size:clamp(1.05rem,1.6vw,1.35rem);color:var(--text-muted);font-weight:300;max-width:62ch}
+
+/* Reveal on scroll */
+.reveal{opacity:0;transform:translateY(38px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-delay="1"]{transition-delay:.08s}
+.reveal[data-delay="2"]{transition-delay:.16s}
+.reveal[data-delay="3"]{transition-delay:.24s}
+.reveal[data-delay="4"]{transition-delay:.32s}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:18px 0;transition:padding .4s var(--ease),background .4s var(--ease),box-shadow .4s var(--ease);
+}
+.nav.scrolled{
+  padding:10px 0;
+  background:rgba(10,14,26,.72);
+  backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px;color:#fff;font-family:var(--serif);font-size:1.35rem;letter-spacing:.01em}
+.brand .mark{
+  width:34px;height:34px;border-radius:9px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--gold),var(--gold-soft));color:var(--ink);
+  font-family:var(--sans);font-weight:700;font-size:1.05rem;
+  box-shadow:0 6px 20px rgba(200,164,92,.35);
+}
+.brand small{display:block;font-family:var(--sans);font-size:.6rem;letter-spacing:.34em;color:var(--text-light);text-transform:uppercase;margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links a{color:rgba(255,255,255,.82);font-size:.9rem;font-weight:500;position:relative;padding:6px 0;transition:color .3s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1.5px;background:var(--gold);transition:width .35s var(--ease)}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.lang-toggle{
+  color:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:.8rem;font-weight:600;
+  letter-spacing:.05em;transition:background .3s,border-color .3s;
+}
+.lang-toggle:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.3)}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;border-radius:999px;font-weight:600;font-size:.92rem;
+  padding:13px 26px;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s,color .35s;
+  white-space:nowrap;
+}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-soft));color:var(--ink);box-shadow:0 10px 30px rgba(200,164,92,.3)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(200,164,92,.42)}
+.btn-ghost{border:1px solid rgba(255,255,255,.32);color:#fff;background:rgba(255,255,255,.04)}
+.btn-ghost:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(10,14,26,.28)}
+.btn .arr{transition:transform .35s var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
+html[dir="rtl"] .btn:hover .arr{transform:translateX(-4px)}
+
+.menu-toggle{display:none;flex-direction:column;gap:5px;padding:8px}
+.menu-toggle span{width:24px;height:2px;background:#fff;border-radius:2px;transition:.3s}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--ink)}
+.hero-media{position:absolute;inset:0;z-index:0}
+.hero-media video,.hero-media .fallback{width:100%;height:100%;object-fit:cover}
+.hero-media .fallback{
+  background:
+    radial-gradient(120% 90% at 80% 10%,rgba(47,109,246,.35),transparent 55%),
+    radial-gradient(90% 80% at 10% 90%,rgba(200,164,92,.22),transparent 50%),
+    linear-gradient(180deg,#0a0e1a 0%,#0d1530 45%,#0a0e1a 100%);
+  animation:heroDrift 18s var(--ease) infinite alternate;
+}
+.hero-media .fallback::after{
+  content:"";position:absolute;inset:0;
+  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><rect width="60" height="60" fill="none"/><path d="M0 59h60M59 0v60" stroke="%23ffffff" stroke-opacity="0.04"/></svg>');
+  background-size:60px 60px;mask-image:linear-gradient(180deg,transparent,black 30%,black 70%,transparent);
+}
+@keyframes heroDrift{from{transform:scale(1.02)}to{transform:scale(1.12)}}
+/* simulated skyline silhouette */
+.skyline{position:absolute;left:0;right:0;bottom:0;height:42%;z-index:1;pointer-events:none;opacity:.9}
+.hero-overlay{
+  position:absolute;inset:0;z-index:2;
+  background:
+    linear-gradient(180deg,rgba(10,14,26,.55) 0%,rgba(10,14,26,.15) 35%,rgba(10,14,26,.78) 88%,var(--ink) 100%);
+}
+.hero-grain{position:absolute;inset:0;z-index:2;opacity:.5;mix-blend-mode:overlay;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3"/></filter><rect width="120" height="120" filter="url(%23n)" opacity="0.5"/></svg>')}
+.hero-content{position:relative;z-index:3;width:100%;padding-bottom:clamp(56px,9vh,120px);padding-top:140px}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:12px;color:#fff;
+  background:rgba(255,255,255,.07);border:1px solid var(--line);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  padding:10px 18px;border-radius:999px;font-size:.78rem;letter-spacing:.12em;font-weight:500;margin-bottom:30px;
+}
+.hero-tag .dot{width:7px;height:7px;border-radius:50%;background:#46d18a;box-shadow:0 0 12px #46d18a;animation:pulse 2.4s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hero h1{color:#fff;max-width:18ch}
+.hero h1 .grad{background:linear-gradient(120deg,var(--gold-soft),var(--gold) 55%,#fff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{color:rgba(255,255,255,.78);font-size:clamp(1.05rem,1.7vw,1.4rem);font-weight:300;max-width:54ch;margin:28px 0 40px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.hero-scroll{
+  display:flex;align-items:center;gap:14px;margin-top:56px;color:var(--text-light);font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;
+}
+.hero-scroll .line{position:relative;width:46px;height:1px;background:rgba(255,255,255,.25);overflow:hidden}
+.hero-scroll .line::after{content:"";position:absolute;left:-46px;top:0;width:46px;height:100%;background:var(--gold);animation:scrollLine 2.4s infinite}
+@keyframes scrollLine{0%{left:-46px}60%,100%{left:46px}}
+
+.hero-strip{
+  position:relative;z-index:3;border-top:1px solid var(--line);
+  background:rgba(10,14,26,.6);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+}
+.hero-strip .container{display:flex;flex-wrap:wrap;gap:18px 56px;align-items:center;justify-content:space-between;padding-top:26px;padding-bottom:26px}
+.trust-label{color:var(--text-light);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase}
+.trust-logos{display:flex;flex-wrap:wrap;gap:36px;align-items:center}
+.trust-logos span{color:rgba(255,255,255,.55);font-weight:600;font-size:.95rem;letter-spacing:.04em;font-family:var(--serif);transition:color .3s}
+.trust-logos span:hover{color:#fff}
+
+/* ============================================================
+   ENGINES OF GROWTH
+   ============================================================ */
+.dark{background:var(--ink);color:#fff}
+.dark .lead{color:var(--text-light)}
+.section-head{max-width:760px;margin-bottom:clamp(48px,6vw,80px)}
+.dark .section-head h2{color:#fff}
+
+.engines{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,4vw,64px);align-items:center}
+.engine-list{display:flex;flex-direction:column;gap:14px}
+.engine{
+  border:1px solid var(--line);border-radius:18px;padding:26px 28px;cursor:pointer;
+  background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));
+  transition:border-color .4s,background .4s,transform .4s var(--ease);position:relative;overflow:hidden;
+}
+.engine::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);transform:scaleY(0);transform-origin:top;transition:transform .45s var(--ease)}
+html[dir="rtl"] .engine::before{left:auto;right:0}
+.engine.active,.engine:hover{border-color:rgba(200,164,92,.5);background:linear-gradient(180deg,rgba(200,164,92,.08),rgba(255,255,255,.01))}
+.engine.active::before{transform:scaleY(1)}
+.engine-top{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.engine-top h3{font-size:1.5rem;color:#fff}
+.engine-num{font-family:var(--serif);font-size:.95rem;color:var(--gold);opacity:.8}
+.engine-desc{color:var(--text-light);font-size:.96rem;margin-top:10px;max-height:0;overflow:hidden;opacity:0;transition:max-height .5s var(--ease),opacity .5s,margin .5s}
+.engine.active .engine-desc{max-height:120px;opacity:1;margin-top:14px}
+.engine-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;max-height:0;overflow:hidden;opacity:0;transition:.5s}
+.engine.active .engine-tags{max-height:60px;opacity:1}
+.engine-tags span{font-size:.74rem;color:#fff;background:rgba(255,255,255,.08);border:1px solid var(--line);padding:5px 12px;border-radius:999px}
+
+.engine-visual{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/5;border:1px solid var(--line);background:var(--ink-2)}
+.engine-visual .pane{position:absolute;inset:0;opacity:0;transform:scale(1.06);transition:opacity .7s var(--ease),transform .9s var(--ease)}
+.engine-visual .pane.show{opacity:1;transform:scale(1)}
+.engine-visual .pane .cap{position:absolute;left:0;right:0;bottom:0;padding:30px;background:linear-gradient(0deg,rgba(8,11,20,.92),transparent);color:#fff}
+.engine-visual .pane .cap .k{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.engine-visual .pane .cap h4{font-family:var(--serif);font-size:1.6rem;margin-bottom:6px}
+.engine-visual .pane .cap p{color:var(--text-light);font-size:.92rem}
+.gfx{position:absolute;inset:0}
+.gfx-1{background:radial-gradient(120% 80% at 70% 20%,rgba(47,109,246,.5),transparent 60%),linear-gradient(160deg,#12203f,#0a1124)}
+.gfx-2{background:radial-gradient(120% 80% at 30% 30%,rgba(200,164,92,.45),transparent 60%),linear-gradient(160deg,#1c1407,#0e0a04)}
+.gfx-3{background:radial-gradient(120% 80% at 60% 70%,rgba(70,209,138,.4),transparent 60%),linear-gradient(160deg,#0a2018,#06120d)}
+.gfx::after{content:"";position:absolute;inset:0;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><path d="M0 39h40M39 0v40" stroke="%23ffffff" stroke-opacity="0.06"/></svg>');background-size:40px 40px}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.light{background:var(--paper);color:var(--text-dark)}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,90px);align-items:center}
+.about-copy h2{color:var(--text-dark);margin-bottom:24px}
+.about-copy p{color:var(--text-muted);font-size:1.05rem;margin-bottom:20px;font-weight:300}
+.about-copy strong{color:var(--text-dark);font-weight:600}
+.about-figure{position:relative}
+.about-img{border-radius:22px;overflow:hidden;aspect-ratio:4/5;position:relative;box-shadow:0 40px 90px -40px rgba(10,14,26,.4)}
+.about-img .bg{position:absolute;inset:0;background:radial-gradient(110% 80% at 20% 10%,rgba(47,109,246,.35),transparent 55%),linear-gradient(160deg,#13213f,#0a1022)}
+.about-badge{
+  position:absolute;bottom:-28px;left:-28px;background:var(--ink);color:#fff;
+  border-radius:18px;padding:24px 28px;box-shadow:0 30px 60px -20px rgba(10,14,26,.55);
+  backdrop-filter:blur(10px);border:1px solid var(--line);
+}
+html[dir="rtl"] .about-badge{left:auto;right:-28px}
+.about-badge .big{font-family:var(--serif);font-size:2.6rem;line-height:1;color:var(--gold)}
+.about-badge .sm{font-size:.82rem;color:var(--text-light);margin-top:6px}
+
+/* Timeline */
+.timeline{margin-top:clamp(56px,7vw,96px);border-top:1px solid var(--line-dark);padding-top:48px}
+.timeline-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:40px;flex-wrap:wrap}
+.timeline-track{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,1fr);gap:24px;overflow-x:auto;padding-bottom:16px;scroll-snap-type:x mandatory}
+.timeline-track::-webkit-scrollbar{height:6px}
+.timeline-track::-webkit-scrollbar-thumb{background:var(--line-dark);border-radius:99px}
+.tl-item{scroll-snap-align:start;position:relative;padding-top:28px}
+.tl-item::before{content:"";position:absolute;top:0;left:0;width:14px;height:14px;border-radius:50%;background:var(--paper);border:3px solid var(--gold)}
+.tl-item::after{content:"";position:absolute;top:6px;left:14px;right:0;height:2px;background:var(--line-dark)}
+.tl-year{font-family:var(--serif);font-size:1.5rem;color:var(--text-dark);margin-bottom:6px}
+.tl-item p{color:var(--text-muted);font-size:.92rem}
+
+/* ============================================================
+   IMPACT / STATS
+   ============================================================ */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.stat{background:var(--ink);padding:clamp(34px,4vw,56px) clamp(24px,3vw,40px)}
+.stat .num{font-family:var(--serif);font-size:clamp(2.8rem,5vw,4.4rem);color:#fff;line-height:1;letter-spacing:-.03em}
+.stat .num .suf{color:var(--gold);font-size:.6em}
+.stat .lbl{color:var(--text-light);font-size:.95rem;margin-top:14px;font-weight:300}
+.stat .bar{height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin-top:22px;transform:scaleX(0);transform-origin:left;transition:transform 1.2s var(--ease) .3s}
+html[dir="rtl"] .stat .bar{transform-origin:right}
+.stat.in .bar{transform:scaleX(1)}
+
+/* ============================================================
+   INDUSTRIES
+   ============================================================ */
+.ind-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.ind{
+  position:relative;border-radius:20px;overflow:hidden;min-height:300px;display:flex;align-items:flex-end;
+  padding:30px;color:#fff;border:1px solid var(--line-dark);isolation:isolate;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+}
+.ind:hover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(10,14,26,.5)}
+.ind .ibg{position:absolute;inset:0;z-index:-2;transition:transform .8s var(--ease)}
+.ind:hover .ibg{transform:scale(1.08)}
+.ind::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(8,11,20,.9) 5%,rgba(8,11,20,.25) 60%,rgba(8,11,20,.5))}
+.ind h3{font-size:1.5rem;margin-bottom:8px}
+.ind p{color:var(--text-light);font-size:.92rem;max-width:34ch}
+.ind .ico{position:absolute;top:26px;left:26px;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.12);border:1px solid var(--line);backdrop-filter:blur(8px)}
+html[dir="rtl"] .ind .ico{left:auto;right:26px}
+.ind .arr-c{position:absolute;top:30px;right:26px;opacity:0;transform:translateX(-6px);transition:.4s}
+html[dir="rtl"] .ind .arr-c{right:auto;left:26px}
+.ind:hover .arr-c{opacity:1;transform:translateX(0)}
+.ibg-1{background:linear-gradient(160deg,#12203f,#0a1124)}
+.ibg-2{background:linear-gradient(160deg,#1c1407,#0e0a04)}
+.ibg-3{background:linear-gradient(160deg,#0a2018,#06120d)}
+.ibg-4{background:linear-gradient(160deg,#1a1030,#0d0820)}
+.ibg-5{background:linear-gradient(160deg,#06182a,#03101c)}
+.ibg-6{background:linear-gradient(160deg,#2a1212,#160808)}
+.ind .ibg::before{content:"";position:absolute;inset:0;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44"><path d="M0 43h44M43 0v44" stroke="%23ffffff" stroke-opacity="0.05"/></svg>');background-size:44px 44px}
+
+/* ============================================================
+   INNOVATION
+   ============================================================ */
+.innov-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+.glass{
+  background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:22px;padding:clamp(28px,3vw,40px);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);position:relative;overflow:hidden;
+  transition:transform .5s var(--ease),border-color .5s,background .5s;
+}
+.glass:hover{transform:translateY(-5px);border-color:rgba(200,164,92,.4);background:rgba(255,255,255,.07)}
+.glass .glow{position:absolute;width:240px;height:240px;border-radius:50%;filter:blur(70px);opacity:.5;z-index:-1}
+.innov-1{grid-column:span 7;min-height:300px}
+.innov-2{grid-column:span 5;min-height:300px}
+.innov-3{grid-column:span 4}
+.innov-4{grid-column:span 4}
+.innov-5{grid-column:span 4}
+.glass .g-ico{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(200,164,92,.25),rgba(47,109,246,.15));border:1px solid var(--line);margin-bottom:22px}
+.glass h3{font-size:1.55rem;color:#fff;margin-bottom:12px}
+.glass p{color:var(--text-light);font-size:.96rem;font-weight:300}
+.glass .chip{display:inline-block;margin-top:18px;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.innov-1 .glow{background:var(--accent);top:-40px;right:-40px}
+.innov-2 .glow{background:var(--gold);bottom:-40px;left:-40px}
+
+/* ============================================================
+   LEADERSHIP
+   ============================================================ */
+.leaders{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.leader{cursor:default}
+.leader-photo{border-radius:18px;overflow:hidden;aspect-ratio:3/4;position:relative;margin-bottom:20px;border:1px solid var(--line-dark)}
+.leader-photo .pbg{position:absolute;inset:0;transition:transform .7s var(--ease)}
+.leader:hover .leader-photo .pbg{transform:scale(1.06)}
+.lp-1{background:linear-gradient(160deg,#dfe4ee,#b9c2d4)}
+.lp-2{background:linear-gradient(160deg,#e6ded2,#cbbda4)}
+.lp-3{background:linear-gradient(160deg,#d4e0e6,#a9c0cc)}
+.lp-4{background:linear-gradient(160deg,#e0d8e6,#c0acce)}
+.leader-photo .silhouette{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:62%;height:78%;background:rgba(10,14,26,.18);border-radius:50% 50% 0 0;filter:blur(2px)}
+.leader-photo .badge{position:absolute;top:16px;left:16px;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);border-radius:8px;padding:6px 12px;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+html[dir="rtl"] .leader-photo .badge{left:auto;right:16px}
+.leader h3{font-size:1.25rem;color:var(--text-dark);margin-bottom:4px}
+.leader .role{color:var(--gold);font-size:.86rem;font-weight:600;margin-bottom:10px}
+.leader .bio{color:var(--text-muted);font-size:.9rem;font-weight:300}
+
+/* ============================================================
+   SUSTAINABILITY (split)
+   ============================================================ */
+.sustain{display:grid;grid-template-columns:1fr 1fr;min-height:560px}
+.sustain-visual{position:relative;overflow:hidden;background:linear-gradient(160deg,#0a2018,#06120d)}
+.sustain-visual .ov{position:absolute;inset:0;background:radial-gradient(90% 70% at 70% 30%,rgba(70,209,138,.3),transparent 60%)}
+.sustain-visual .ov2{position:absolute;inset:0;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"><path d="M0 47h48M47 0v48" stroke="%23ffffff" stroke-opacity="0.05"/></svg>');background-size:48px 48px}
+.sustain-visual .quote{position:absolute;inset:auto 40px 40px 40px;color:#fff}
+.sustain-visual .quote .q{font-family:var(--serif);font-size:clamp(1.3rem,2.4vw,2rem);line-height:1.3}
+.sustain-visual .quote .a{color:var(--gold);margin-top:16px;font-size:.86rem;letter-spacing:.1em;text-transform:uppercase}
+.sustain-copy{padding:clamp(48px,6vw,90px);display:flex;flex-direction:column;justify-content:center;background:var(--ink);color:#fff}
+.sustain-copy h2{color:#fff;margin-bottom:20px}
+.sustain-copy p{color:var(--text-light);font-weight:300;margin-bottom:30px;font-size:1.05rem}
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:10px}
+.pillar{border:1px solid var(--line);border-radius:14px;padding:20px}
+.pillar .pv{font-family:var(--serif);font-size:1.9rem;color:var(--gold);line-height:1}
+.pillar .pl{color:var(--text-light);font-size:.84rem;margin-top:8px}
+
+/* ============================================================
+   NEWS
+   ============================================================ */
+.news-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:52px}
+.news-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:24px}
+.card{border-radius:20px;overflow:hidden;background:var(--paper);border:1px solid var(--line-dark);transition:transform .5s var(--ease),box-shadow .5s var(--ease);display:flex;flex-direction:column}
+.card:hover{transform:translateY(-6px);box-shadow:0 30px 60px -34px rgba(10,14,26,.4)}
+.card-img{aspect-ratio:16/10;position:relative;overflow:hidden}
+.card-img .cbg{position:absolute;inset:0;transition:transform .7s var(--ease)}
+.card:hover .card-img .cbg{transform:scale(1.07)}
+.cbg-1{background:radial-gradient(90% 80% at 30% 20%,rgba(47,109,246,.5),transparent 60%),linear-gradient(160deg,#12203f,#0a1124)}
+.cbg-2{background:radial-gradient(90% 80% at 70% 30%,rgba(200,164,92,.45),transparent 60%),linear-gradient(160deg,#1c1407,#0e0a04)}
+.cbg-3{background:radial-gradient(90% 80% at 40% 70%,rgba(70,209,138,.4),transparent 60%),linear-gradient(160deg,#0a2018,#06120d)}
+.card-body{padding:28px;flex:1;display:flex;flex-direction:column}
+.card .meta{display:flex;gap:12px;align-items:center;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.card .meta .sep{width:4px;height:4px;border-radius:50%;background:var(--text-light)}
+.card h3{font-size:1.3rem;color:var(--text-dark);margin-bottom:12px;line-height:1.25}
+.card.lead-card h3{font-size:1.7rem}
+.card p{color:var(--text-muted);font-size:.92rem;font-weight:300;margin-bottom:18px;flex:1}
+.card .rd{font-size:.85rem;font-weight:600;color:var(--text-dark);display:inline-flex;gap:8px;align-items:center}
+
+/* ============================================================
+   CAREERS
+   ============================================================ */
+.careers{position:relative;overflow:hidden;background:var(--ink);color:#fff;border-radius:28px;padding:clamp(48px,6vw,90px);isolation:isolate}
+.careers .cbg-x{position:absolute;inset:0;z-index:-1;background:radial-gradient(80% 120% at 85% 10%,rgba(47,109,246,.35),transparent 55%),radial-gradient(70% 100% at 10% 90%,rgba(200,164,92,.22),transparent 55%)}
+.careers-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}
+.careers h2{color:#fff;margin-bottom:20px}
+.careers p{color:var(--text-light);font-weight:300;margin-bottom:30px;font-size:1.08rem;max-width:48ch}
+.career-stats{display:flex;gap:40px;flex-wrap:wrap;margin-top:10px}
+.career-stats .cs .v{font-family:var(--serif);font-size:2rem;color:var(--gold)}
+.career-stats .cs .l{color:var(--text-light);font-size:.84rem}
+.career-roles{display:flex;flex-direction:column;gap:12px}
+.role-row{display:flex;align-items:center;justify-content:space-between;gap:16px;border:1px solid var(--line);border-radius:14px;padding:18px 22px;transition:background .4s,border-color .4s,transform .4s}
+.role-row:hover{background:rgba(255,255,255,.05);border-color:rgba(200,164,92,.4);transform:translateX(4px)}
+html[dir="rtl"] .role-row:hover{transform:translateX(-4px)}
+.role-row .rt{font-weight:600}
+.role-row .rl{color:var(--text-light);font-size:.82rem;margin-top:3px}
+.role-row .rtag{font-size:.72rem;color:var(--gold);border:1px solid rgba(200,164,92,.35);border-radius:999px;padding:5px 12px;white-space:nowrap}
+
+/* ============================================================
+   CONTACT / CLOSING
+   ============================================================ */
+.closing{text-align:center;background:var(--ink);color:#fff;position:relative;overflow:hidden}
+.closing .cx{position:absolute;inset:0;background:radial-gradient(60% 80% at 50% 0%,rgba(47,109,246,.25),transparent 60%)}
+.closing-inner{position:relative;z-index:1;max-width:820px;margin:0 auto}
+.closing h2{color:#fff;font-size:clamp(2.4rem,5vw,4.2rem);margin-bottom:24px}
+.closing h2 .grad{background:linear-gradient(120deg,var(--gold-soft),var(--gold) 55%,#fff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.closing p{color:var(--text-light);font-size:1.2rem;font-weight:300;margin-bottom:40px}
+.closing-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+/* Footer */
+.footer{background:#070a13;color:var(--text-light);padding:80px 0 40px;border-top:1px solid var(--line)}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:56px}
+.footer .brand{color:#fff;margin-bottom:20px}
+.footer-col h4{color:#fff;font-family:var(--sans);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:20px;font-weight:600}
+.footer-col a{display:block;color:var(--text-light);font-size:.92rem;margin-bottom:12px;transition:color .3s}
+.footer-col a:hover{color:#fff}
+.footer-about{max-width:34ch;font-size:.92rem;font-weight:300;line-height:1.7}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:30px;border-top:1px solid var(--line);font-size:.84rem}
+.footer-social{display:flex;gap:14px}
+.footer-social a{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;transition:.3s}
+.footer-social a:hover{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.3)}
+
+/* Progress bar */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--gold-soft));z-index:1100;transition:width .1s linear}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:1024px){
+  .innov-1,.innov-2{grid-column:span 12}
+  .innov-3,.innov-4,.innov-5{grid-column:span 4}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .leaders{grid-template-columns:repeat(2,1fr)}
+  .ind-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:880px){
+  .nav-links{display:none}
+  .menu-toggle{display:flex}
+  .nav-cta .btn-gold{display:none}
+  .engines{grid-template-columns:1fr}
+  .engine-visual{order:-1;aspect-ratio:16/11}
+  .about{grid-template-columns:1fr}
+  .about-figure{max-width:440px}
+  .sustain{grid-template-columns:1fr}
+  .sustain-visual{min-height:340px}
+  .careers-grid{grid-template-columns:1fr;gap:40px}
+  .news-grid{grid-template-columns:1fr}
+  .innov-3,.innov-4,.innov-5{grid-column:span 12}
+
+  /* Mobile menu */
+  .nav-links.open{
+    display:flex;position:fixed;inset:64px 0 auto 0;flex-direction:column;gap:0;
+    background:rgba(10,14,26,.96);backdrop-filter:blur(20px);padding:20px clamp(20px,5vw,64px) 30px;
+    border-bottom:1px solid var(--line);align-items:stretch;
+  }
+  .nav-links.open a{padding:16px 0;border-bottom:1px solid var(--line);font-size:1.05rem}
+}
+@media (max-width:560px){
+  .stats{grid-template-columns:1fr}
+  .leaders{grid-template-columns:1fr}
+  .ind-grid{grid-template-columns:1fr}
+  .pillars{grid-template-columns:1fr}
+  .hero-strip .container{justify-content:flex-start}
+  .trust-logos{gap:22px}
+  .about-badge{left:0;bottom:-20px}
+  html[dir="rtl"] .about-badge{right:0;left:auto}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- ========== NAV ========== -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="brand" aria-label="Jumbo Group home">
+      <span class="mark" aria-hidden="true">J</span>
+      <span>Jumbo Group<small data-i18n="tagline">Powering Progress</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="#ecosystem" data-i18n="nav_ecosystem">Ecosystem</a>
+      <a href="#about" data-i18n="nav_about">About</a>
+      <a href="#industries" data-i18n="nav_industries">Industries</a>
+      <a href="#innovation" data-i18n="nav_innovation">Innovation</a>
+      <a href="#leadership" data-i18n="nav_leadership">Leadership</a>
+      <a href="#news" data-i18n="nav_news">Insights</a>
+      <a href="#careers" data-i18n="nav_careers">Careers</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="lang-toggle" id="langToggle" aria-label="Switch language">العربية</button>
+      <a href="#contact" class="btn btn-gold" data-i18n="nav_contact">Contact <span class="arr" aria-hidden="true">→</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ========== 1. HERO ========== -->
+<section class="hero" aria-label="Introduction">
+  <div class="hero-media" aria-hidden="true">
+    <!-- Video background with graceful gradient fallback -->
+    <video autoplay muted loop playsinline poster="">
+      <source src="" type="video/mp4" />
+    </video>
+    <div class="fallback"></div>
+    <!-- Simulated Dubai skyline silhouette -->
+    <svg class="skyline" viewBox="0 0 1440 320" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+      <g fill="#070a13" fill-opacity="0.85">
+        <rect x="40" y="180" width="60" height="140"/>
+        <rect x="110" y="140" width="40" height="180"/>
+        <rect x="160" y="200" width="70" height="120"/>
+        <rect x="245" y="100" width="34" height="220"/>
+        <rect x="290" y="160" width="56" height="160"/>
+        <path d="M360 320 L380 60 L400 320 Z"/>
+        <rect x="410" y="190" width="60" height="130"/>
+        <rect x="480" y="150" width="44" height="170"/>
+        <rect x="535" y="120" width="30" height="200"/>
+        <rect x="575" y="200" width="64" height="120"/>
+        <path d="M660 320 L690 20 L720 320 Z"/>
+        <rect x="700" y="0" width="6" height="40"/>
+        <rect x="735" y="170" width="50" height="150"/>
+        <rect x="795" y="130" width="40" height="190"/>
+        <rect x="845" y="190" width="70" height="130"/>
+        <rect x="925" y="110" width="36" height="210"/>
+        <rect x="970" y="170" width="60" height="150"/>
+        <rect x="1040" y="150" width="44" height="170"/>
+        <path d="M1095 320 L1115 80 L1135 320 Z"/>
+        <rect x="1150" y="190" width="64" height="130"/>
+        <rect x="1225" y="140" width="40" height="180"/>
+        <rect x="1275" y="180" width="70" height="140"/>
+        <rect x="1355" y="150" width="50" height="170"/>
+      </g>
+    </svg>
+  </div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-grain" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div class="container">
+      <span class="hero-tag reveal in"><span class="dot" aria-hidden="true"></span><span data-i18n="hero_tag">Diversified Enterprise · Technology · Distribution</span></span>
+      <h1 class="h-display reveal in" data-delay="1">
+        <span data-i18n="hero_h1a">Powering Progress Across the </span><span class="grad" data-i18n="hero_h1b">Middle East</span> <span data-i18n="hero_h1c">Since 1974</span>
+      </h1>
+      <p class="hero-sub reveal in" data-delay="2" data-i18n="hero_sub">
+        A diversified powerhouse uniting technology, enterprise solutions, and regional distribution — engineering the infrastructure, intelligence, and innovation that move nations forward.
+      </p>
+      <div class="hero-actions reveal in" data-delay="3">
+        <a href="#ecosystem" class="btn btn-gold" data-i18n="hero_cta1">Explore the Group <span class="arr" aria-hidden="true">→</span></a>
+        <a href="#about" class="btn btn-ghost" data-i18n="hero_cta2">Our Story</a>
+      </div>
+      <div class="hero-scroll reveal in" data-delay="4" aria-hidden="true">
+        <span class="line"></span><span data-i18n="hero_scroll">Scroll to discover</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-strip">
+    <div class="container">
+      <span class="trust-label" data-i18n="trust_label">Trusted partner to global leaders</span>
+      <div class="trust-logos" aria-label="Partner brands">
+        <span>Microsoft</span><span>Cisco</span><span>Dell</span><span>HP</span><span>Oracle</span><span>NVIDIA</span><span>SAP</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 2. ENGINES OF GROWTH ========== -->
+<section class="dark section-pad" id="ecosystem" aria-labelledby="eco-h">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="eco_eyebrow">The Group</span>
+      <h2 class="h-section" id="eco-h" data-i18n="eco_h">One Group. Multiple engines of growth.</h2>
+      <p class="lead" style="margin-top:22px" data-i18n="eco_lead">A connected ecosystem of specialised businesses — each a leader in its field, together forming an integrated platform for regional transformation.</p>
+    </div>
+
+    <div class="engines">
+      <div class="engine-list reveal" role="tablist" aria-label="Business divisions">
+        <article class="engine active" data-engine="0" role="tab" tabindex="0" aria-selected="true">
+          <div class="engine-top"><h3 data-i18n="eng1_h">Jumbo Retail</h3><span class="engine-num">01</span></div>
+          <p class="engine-desc" data-i18n="eng1_d">Premium consumer technology experiences, omnichannel retail platforms, and lifestyle brands serving millions across the Gulf.</p>
+          <div class="engine-tags"><span data-i18n="eng1_t1">Omnichannel</span><span data-i18n="eng1_t2">Consumer Brands</span><span data-i18n="eng1_t3">Experience Retail</span></div>
+        </article>
+        <article class="engine" data-engine="1" role="tab" tabindex="0" aria-selected="false">
+          <div class="engine-top"><h3 data-i18n="eng2_h">Jumbo Enterprise</h3><span class="engine-num">02</span></div>
+          <p class="engine-desc" data-i18n="eng2_d">Mission-critical IT infrastructure, cloud, cybersecurity, and digital transformation services for government and enterprise.</p>
+          <div class="engine-tags"><span data-i18n="eng2_t1">Cloud & Data Centre</span><span data-i18n="eng2_t2">Cybersecurity</span><span data-i18n="eng2_t3">Systems Integration</span></div>
+        </article>
+        <article class="engine" data-engine="2" role="tab" tabindex="0" aria-selected="false">
+          <div class="engine-top"><h3 data-i18n="eng3_h">Jumbo Distribution</h3><span class="engine-num">03</span></div>
+          <p class="engine-desc" data-i18n="eng3_d">The region's most trusted distribution network — moving world-leading technology brands across 14 markets with precision logistics.</p>
+          <div class="engine-tags"><span data-i18n="eng3_t1">14 Markets</span><span data-i18n="eng3_t2">Channel Network</span><span data-i18n="eng3_t3">Smart Logistics</span></div>
+        </article>
+      </div>
+
+      <div class="engine-visual reveal" data-delay="1" aria-hidden="true">
+        <div class="pane show" data-pane="0">
+          <div class="gfx gfx-1"></div>
+          <div class="cap"><div class="k">Division 01</div><h4>Jumbo Retail</h4><p>Reimagining how the region shops, connects, and lives with technology.</p></div>
+        </div>
+        <div class="pane" data-pane="1">
+          <div class="gfx gfx-2"></div>
+          <div class="cap"><div class="k">Division 02</div><h4>Jumbo Enterprise</h4><p>The digital backbone behind government and industry leaders.</p></div>
+        </div>
+        <div class="pane" data-pane="2">
+          <div class="gfx gfx-3"></div>
+          <div class="cap"><div class="k">Division 03</div><h4>Jumbo Distribution</h4><p>Precision logistics connecting global brands to 14 markets.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 3. ABOUT ========== -->
+<section class="light section-pad" id="about" aria-labelledby="about-h">
+  <div class="container">
+    <div class="about">
+      <div class="about-copy reveal">
+        <span class="eyebrow" data-i18n="about_eyebrow">Our Heritage</span>
+        <h2 class="h-section" id="about-h" data-i18n="about_h">Five decades of building what's next.</h2>
+        <p data-i18n="about_p1">Founded in <strong>1974</strong>, Jumbo Group began with a singular conviction — that technology, applied with vision and discipline, could transform how a region lives and works. Half a century on, that conviction has scaled into one of the Middle East's most diversified enterprise groups.</p>
+        <p data-i18n="about_p2">From a single storefront to an integrated platform spanning <strong>retail, enterprise technology, and distribution</strong>, our story is one of relentless reinvention — anchored in heritage, propelled by innovation.</p>
+        <a href="#contact" class="btn btn-dark" style="margin-top:14px" data-i18n="about_cta">Read our full story <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+      <div class="about-figure reveal" data-delay="1">
+        <div class="about-img"><div class="bg"></div></div>
+        <div class="about-badge">
+          <div class="big" data-i18n="about_badge_v">50+</div>
+          <div class="sm" data-i18n="about_badge_l">Years of regional leadership<br/>since 1974</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline reveal">
+      <div class="timeline-head">
+        <div>
+          <span class="eyebrow" data-i18n="tl_eyebrow">Milestones</span>
+          <h3 style="font-size:clamp(1.6rem,3vw,2.4rem);color:var(--text-dark)" data-i18n="tl_h">A timeline of progress</h3>
+        </div>
+        <p style="color:var(--text-muted);max-width:34ch;font-weight:300" data-i18n="tl_note">Defining moments that shaped a diversified enterprise group.</p>
+      </div>
+      <div class="timeline-track">
+        <div class="tl-item"><div class="tl-year">1974</div><p data-i18n="tl_1">Foundation in Dubai — the journey begins.</p></div>
+        <div class="tl-item"><div class="tl-year">1989</div><p data-i18n="tl_2">Regional distribution network established across the GCC.</p></div>
+        <div class="tl-item"><div class="tl-year">2003</div><p data-i18n="tl_3">Enterprise technology division launched for government clients.</p></div>
+        <div class="tl-item"><div class="tl-year">2015</div><p data-i18n="tl_4">Cloud, data centre, and cybersecurity capabilities scaled.</p></div>
+        <div class="tl-item"><div class="tl-year">2021</div><p data-i18n="tl_5">AI & smart-infrastructure innovation practice founded.</p></div>
+        <div class="tl-item"><div class="tl-year">2024</div><p data-i18n="tl_6">50th anniversary — operating across 14 regional markets.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 4. IMPACT BY NUMBERS ========== -->
+<section class="dark section-pad" id="impact" aria-labelledby="impact-h">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="impact_eyebrow">Impact by Numbers</span>
+      <h2 class="h-section" id="impact-h" data-i18n="impact_h">Scale that speaks for itself.</h2>
+    </div>
+    <div class="stats reveal" id="stats">
+      <div class="stat"><div class="num"><span class="count" data-target="50" data-suffix="+">0</span></div><div class="lbl" data-i18n="stat1">Years of regional leadership</div><div class="bar"></div></div>
+      <div class="stat"><div class="num"><span class="count" data-target="14" data-suffix="">0</span></div><div class="lbl" data-i18n="stat2">Markets across MENA</div><div class="bar"></div></div>
+      <div class="stat"><div class="num"><span class="count" data-target="5000" data-suffix="+" data-format="k">0</span></div><div class="lbl" data-i18n="stat3">Professionals & specialists</div><div class="bar"></div></div>
+      <div class="stat"><div class="num"><span class="count" data-target="300" data-suffix="+">0</span></div><div class="lbl" data-i18n="stat4">Global technology partners</div><div class="bar"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 5. INDUSTRIES ========== -->
+<section class="light section-pad" id="industries" aria-labelledby="ind-h">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="ind_eyebrow">Sectors</span>
+      <h2 class="h-section" id="ind-h" style="color:var(--text-dark)" data-i18n="ind_h">Industries we transform.</h2>
+      <p class="lead" style="margin-top:22px" data-i18n="ind_lead">Deep sector expertise applied where it matters most — delivering measurable outcomes across the region's defining industries.</p>
+    </div>
+    <div class="ind-grid">
+      <article class="ind reveal"><div class="ibg ibg-1"></div><span class="ico" aria-hidden="true">🏛️</span><span class="arr-c" aria-hidden="true">↗</span><div><h3 data-i18n="ind1_h">Government & Public Sector</h3><p data-i18n="ind1_p">Digital government platforms and smart-nation infrastructure.</p></div></article>
+      <article class="ind reveal" data-delay="1"><div class="ibg ibg-2"></div><span class="ico" aria-hidden="true">🏦</span><span class="arr-c" aria-hidden="true">↗</span><div><h3 data-i18n="ind2_h">Banking & Finance</h3><p data-i18n="ind2_p">Secure, resilient systems powering the region's financial sector.</p></div></article>
+      <article class="ind reveal" data-delay="2"><div class="ibg ibg-3"></div><span class="ico" aria-hidden="true">🏥</span><span class="arr-c" aria-hidden="true">↗</span><div><h3 data-i18n="ind3_h">Healthcare</h3><p data-i18n="ind3_p">Connected care, data, and digital health ecosystems.</p></div></article>
+      <article class="ind reveal"><div class="ibg ibg-4"></div><span class="ico" aria-hidden="true">🛢️</span><span class="arr-c" aria-hidden="true">↗</span><div><h3 data-i18n="ind4_h">Energy & Utilities</h3><p data-i18n="ind4_p">Intelligent grids and operational technology at national scale.</p></div></article>
+      <article class="ind reveal" data-delay="1"><div class="ibg ibg-5"></div><span class="ico" aria-hidden="true">🎓</span><span class="arr-c" aria-hidden="true">↗</span><div><h3 data-i18n="ind5_h">Education</h3><p data-i18n="ind5_p">Future-ready learning environments and EdTech platforms.</p></div></article>
+      <article class="ind reveal" data-delay="2"><div class="ibg ibg-6"></div><span class="ico" aria-hidden="true">🏬</span><span class="arr-c" aria-hidden="true">↗</span><div><h3 data-i18n="ind6_h">Retail & Hospitality</h3><p data-i18n="ind6_p">Experience-led commerce and guest-engagement technology.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 6. INNOVATION ========== -->
+<section class="dark section-pad" id="innovation" aria-labelledby="innov-h">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="innov_eyebrow">Innovation & Future Technologies</span>
+      <h2 class="h-section" id="innov-h" data-i18n="innov_h">Engineering the technologies of tomorrow.</h2>
+      <p class="lead" style="margin-top:22px" data-i18n="innov_lead">Our innovation practice turns emerging technology into enterprise advantage — responsibly, at scale, and built for the region.</p>
+    </div>
+    <div class="innov-grid">
+      <article class="glass innov-1 reveal"><div class="glow"></div><div class="g-ico" aria-hidden="true">✦</div><h3 data-i18n="in1_h">Artificial Intelligence</h3><p data-i18n="in1_p">Applied AI, generative platforms, and intelligent automation that augment human decision-making across the enterprise. From predictive operations to autonomous services, we deploy AI with governance and trust at the core.</p><span class="chip" data-i18n="in1_c">Applied AI · GenAI · MLOps</span></article>
+      <article class="glass innov-2 reveal" data-delay="1"><div class="glow"></div><div class="g-ico" aria-hidden="true">▦</div><h3 data-i18n="in2_h">Smart Infrastructure</h3><p data-i18n="in2_p">Connected cities, intelligent buildings, and IoT ecosystems engineered for resilience and sustainability.</p><span class="chip" data-i18n="in2_c">IoT · Smart Cities · OT</span></article>
+      <article class="glass innov-3 reveal"><div class="g-ico" aria-hidden="true">⟳</div><h3 data-i18n="in3_h">Digital Transformation</h3><p data-i18n="in3_p">End-to-end modernisation — from legacy to cloud-native, data-driven enterprise.</p><span class="chip" data-i18n="in3_c">Cloud · Data · CX</span></article>
+      <article class="glass innov-4 reveal" data-delay="1"><div class="g-ico" aria-hidden="true">◈</div><h3 data-i18n="in4_h">Emerging Technologies</h3><p data-i18n="in4_p">Blockchain, immersive reality, and quantum-ready research moving from lab to market.</p><span class="chip" data-i18n="in4_c">Web3 · XR · Quantum</span></article>
+      <article class="glass innov-5 reveal" data-delay="2"><div class="g-ico" aria-hidden="true">🛡️</div><h3 data-i18n="in5_h">Cyber Resilience</h3><p data-i18n="in5_p">Zero-trust security and 24/7 defence safeguarding the region's critical systems.</p><span class="chip" data-i18n="in5_c">Zero-Trust · SOC</span></article>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 7. LEADERSHIP ========== -->
+<section class="light section-pad" id="leadership" aria-labelledby="lead-h">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="lead_eyebrow">Leadership</span>
+      <h2 class="h-section" id="lead-h" style="color:var(--text-dark)" data-i18n="lead_h">Vision led from the front.</h2>
+      <p class="lead" style="margin-top:22px" data-i18n="lead_lead">A leadership team uniting decades of regional insight with global enterprise experience.</p>
+    </div>
+    <div class="leaders">
+      <article class="leader reveal"><div class="leader-photo"><div class="pbg lp-1"></div><div class="silhouette"></div><span class="badge" data-i18n="lead1_b">Chairman</span></div><h3 data-i18n="lead1_n">Abdul Rahman Al Mansoori</h3><div class="role" data-i18n="lead1_r">Group Chairman</div><p class="bio" data-i18n="lead1_bio">Steering five decades of vision and regional growth.</p></article>
+      <article class="leader reveal" data-delay="1"><div class="leader-photo"><div class="pbg lp-2"></div><div class="silhouette"></div><span class="badge" data-i18n="lead2_b">CEO</span></div><h3 data-i18n="lead2_n">Sarah Khalili</h3><div class="role" data-i18n="lead2_r">Group Chief Executive Officer</div><p class="bio" data-i18n="lead2_bio">Driving the group's enterprise and innovation agenda.</p></article>
+      <article class="leader reveal" data-delay="2"><div class="leader-photo"><div class="pbg lp-3"></div><div class="silhouette"></div><span class="badge" data-i18n="lead3_b">CTO</span></div><h3 data-i18n="lead3_n">Rajiv Menon</h3><div class="role" data-i18n="lead3_r">Group Chief Technology Officer</div><p class="bio" data-i18n="lead3_bio">Architecting the technology platforms of the future.</p></article>
+      <article class="leader reveal" data-delay="3"><div class="leader-photo"><div class="pbg lp-4"></div><div class="silhouette"></div><span class="badge" data-i18n="lead4_b">CFO</span></div><h3 data-i18n="lead4_n">Layla Haddad</h3><div class="role" data-i18n="lead4_r">Group Chief Financial Officer</div><p class="bio" data-i18n="lead4_bio">Stewarding disciplined, sustainable growth.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 8. SUSTAINABILITY ========== -->
+<section class="section-pad" id="sustainability" style="padding-left:0;padding-right:0" aria-labelledby="sus-h">
+  <div class="container">
+    <div class="sustain reveal" style="border-radius:28px;overflow:hidden;border:1px solid var(--line)">
+      <div class="sustain-visual">
+        <div class="ov"></div><div class="ov2"></div>
+        <div class="quote">
+          <div class="q" data-i18n="sus_q">"Progress that lasts is progress shared — with our people, our communities, and our planet."</div>
+          <div class="a" data-i18n="sus_a">— The Jumbo Commitment</div>
+        </div>
+      </div>
+      <div class="sustain-copy">
+        <span class="eyebrow" data-i18n="sus_eyebrow">Sustainability & Community</span>
+        <h2 class="h-section" id="sus-h" data-i18n="sus_h">Building a responsible future.</h2>
+        <p data-i18n="sus_p">We embed sustainability into how we operate, invest, and innovate — advancing the region's net-zero ambitions while creating opportunity for the communities we serve.</p>
+        <div class="pillars">
+          <div class="pillar"><div class="pv">2030</div><div class="pl" data-i18n="sus_p1">Net-zero operations roadmap</div></div>
+          <div class="pillar"><div class="pv">100K+</div><div class="pl" data-i18n="sus_p2">Lives reached through community programs</div></div>
+          <div class="pillar"><div class="pv">40%</div><div class="pl" data-i18n="sus_p3">Renewable energy across facilities</div></div>
+          <div class="pillar"><div class="pv">#1</div><div class="pl" data-i18n="sus_p4">In regional ESG benchmarks</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 9. NEWS ========== -->
+<section class="light section-pad" id="news" aria-labelledby="news-h">
+  <div class="container">
+    <div class="news-head reveal">
+      <div>
+        <span class="eyebrow" data-i18n="news_eyebrow">News & Insights</span>
+        <h2 class="h-section" id="news-h" style="color:var(--text-dark)" data-i18n="news_h">Perspectives on what's next.</h2>
+      </div>
+      <a href="#" class="btn btn-dark" data-i18n="news_all">View all insights <span class="arr" aria-hidden="true">→</span></a>
+    </div>
+    <div class="news-grid">
+      <article class="card lead-card reveal">
+        <div class="card-img"><div class="cbg cbg-1"></div></div>
+        <div class="card-body">
+          <div class="meta"><span data-i18n="news1_tag">Report</span><span class="sep"></span><span>Jun 2026</span></div>
+          <h3 data-i18n="news1_h">The State of AI Adoption Across Gulf Enterprises</h3>
+          <p data-i18n="news1_p">Our flagship research surveys 400+ regional leaders on how applied AI is reshaping operations, talent, and competitive advantage in 2026.</p>
+          <span class="rd" data-i18n="news_read">Read the report <span aria-hidden="true">→</span></span>
+        </div>
+      </article>
+      <article class="card reveal" data-delay="1">
+        <div class="card-img"><div class="cbg cbg-2"></div></div>
+        <div class="card-body">
+          <div class="meta"><span data-i18n="news2_tag">Press</span><span class="sep"></span><span>May 2026</span></div>
+          <h3 data-i18n="news2_h">Jumbo Enterprise expands sovereign cloud capacity</h3>
+          <p data-i18n="news2_p">A new regional data-centre footprint to support data-residency for government clients.</p>
+          <span class="rd" data-i18n="news_read2">Read more <span aria-hidden="true">→</span></span>
+        </div>
+      </article>
+      <article class="card reveal" data-delay="2">
+        <div class="card-img"><div class="cbg cbg-3"></div></div>
+        <div class="card-body">
+          <div class="meta"><span data-i18n="news3_tag">Insight</span><span class="sep"></span><span>Apr 2026</span></div>
+          <h3 data-i18n="news3_h">Why smart infrastructure is the region's next frontier</h3>
+          <p data-i18n="news3_p">Connected cities are redefining liveability, sustainability, and economic resilience.</p>
+          <span class="rd" data-i18n="news_read3">Read more <span aria-hidden="true">→</span></span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 10. CAREERS ========== -->
+<section class="dark section-pad" id="careers" aria-labelledby="car-h">
+  <div class="container">
+    <div class="careers reveal">
+      <div class="cbg-x"></div>
+      <div class="careers-grid">
+        <div>
+          <span class="eyebrow" data-i18n="car_eyebrow">Careers</span>
+          <h2 class="h-section" id="car-h" data-i18n="car_h">Build your future with us.</h2>
+          <p data-i18n="car_p">Join a group where ambition meets impact. We're hiring across technology, enterprise, and innovation — for people who want to shape the region's future.</p>
+          <div class="career-stats">
+            <div class="cs"><div class="v">5,000+</div><div class="l" data-i18n="car_s1">Team members</div></div>
+            <div class="cs"><div class="v">40+</div><div class="l" data-i18n="car_s2">Nationalities</div></div>
+            <div class="cs"><div class="v">Top 10</div><div class="l" data-i18n="car_s3">Regional employer</div></div>
+          </div>
+          <a href="#contact" class="btn btn-gold" style="margin-top:34px" data-i18n="car_cta">Explore opportunities <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+        <div class="career-roles">
+          <div class="role-row"><div><div class="rt" data-i18n="role1_t">Senior AI Engineer</div><div class="rl" data-i18n="role1_l">Dubai · Enterprise</div></div><span class="rtag" data-i18n="role1_tag">Full-time</span></div>
+          <div class="role-row"><div><div class="rt" data-i18n="role2_t">Cloud Solutions Architect</div><div class="rl" data-i18n="role2_l">Abu Dhabi · Enterprise</div></div><span class="rtag" data-i18n="role2_tag">Full-time</span></div>
+          <div class="role-row"><div><div class="rt" data-i18n="role3_t">Cybersecurity Lead</div><div class="rl" data-i18n="role3_l">Riyadh · Innovation</div></div><span class="rtag" data-i18n="role3_tag">Full-time</span></div>
+          <div class="role-row"><div><div class="rt" data-i18n="role4_t">Distribution Operations Manager</div><div class="rl" data-i18n="role4_l">Dubai · Distribution</div></div><span class="rtag" data-i18n="role4_tag">Full-time</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 11. CONTACT / CLOSING ========== -->
+<section class="closing section-pad" id="contact" aria-labelledby="close-h">
+  <div class="cx" aria-hidden="true"></div>
+  <div class="container closing-inner reveal">
+    <span class="eyebrow" style="justify-content:center" data-i18n="close_eyebrow">Let's build what's next</span>
+    <h2 id="close-h"><span data-i18n="close_ha">Partner with the group </span><span class="grad" data-i18n="close_hb">powering the region.</span></h2>
+    <p data-i18n="close_p">Whether you're a government, an enterprise, or a global brand entering the Middle East — let's design the next chapter together.</p>
+    <div class="closing-actions">
+      <a href="mailto:partnerships@jumbogroup.ae" class="btn btn-gold" data-i18n="close_cta1">Start a conversation <span class="arr" aria-hidden="true">→</span></a>
+      <a href="#" class="btn btn-ghost" data-i18n="close_cta2">Download corporate profile</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand"><span class="mark" aria-hidden="true">J</span><span>Jumbo Group</span></div>
+        <p class="footer-about" data-i18n="foot_about">A diversified technology, enterprise, and distribution powerhouse advancing the Middle East since 1974.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="foot_c1">Group</h4>
+        <a href="#ecosystem" data-i18n="foot_c1a">Our Businesses</a>
+        <a href="#about" data-i18n="foot_c1b">About Us</a>
+        <a href="#leadership" data-i18n="foot_c1c">Leadership</a>
+        <a href="#sustainability" data-i18n="foot_c1d">Sustainability</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="foot_c2">Explore</h4>
+        <a href="#industries" data-i18n="foot_c2a">Industries</a>
+        <a href="#innovation" data-i18n="foot_c2b">Innovation</a>
+        <a href="#news" data-i18n="foot_c2c">News & Insights</a>
+        <a href="#careers" data-i18n="foot_c2d">Careers</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="foot_c3">Connect</h4>
+        <a href="#contact" data-i18n="foot_c3a">Contact Us</a>
+        <a href="mailto:partnerships@jumbogroup.ae">partnerships@jumbogroup.ae</a>
+        <a href="#" data-i18n="foot_c3c">Media Centre</a>
+        <a href="#" data-i18n="foot_c3d">Investor Relations</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="foot_copy">© 2026 Jumbo Group. All rights reserved. · Dubai, United Arab Emirates</span>
+      <div class="footer-social" aria-label="Social media">
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="X">𝕏</a>
+        <a href="#" aria-label="YouTube">▶</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   INTERACTIONS
+   ============================================================ */
+(function(){
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* --- Nav scroll state + progress bar --- */
+  var nav = document.getElementById('nav');
+  var progress = document.getElementById('progress');
+  function onScroll(){
+    if(window.scrollY > 40) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (h>0 ? (window.scrollY/h*100) : 0) + '%';
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* --- Mobile menu --- */
+  var menuToggle = document.getElementById('menuToggle');
+  var navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', function(){
+    var open = navLinks.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.addEventListener('click', function(e){
+    if(e.target.tagName === 'A'){ navLinks.classList.remove('open'); menuToggle.setAttribute('aria-expanded', false); }
+  });
+
+  /* --- Reveal on scroll --- */
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !reduce){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+    }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    revealEls.forEach(function(el){ if(!el.classList.contains('in')) io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* --- Engines interactive switching --- */
+  var engines = document.querySelectorAll('.engine');
+  var panes = document.querySelectorAll('.engine-visual .pane');
+  function selectEngine(idx){
+    engines.forEach(function(e,i){
+      var on = i===idx;
+      e.classList.toggle('active', on);
+      e.setAttribute('aria-selected', on);
+    });
+    panes.forEach(function(p,i){ p.classList.toggle('show', i===idx); });
+  }
+  engines.forEach(function(e){
+    var idx = +e.getAttribute('data-engine');
+    e.addEventListener('mouseenter', function(){ selectEngine(idx); });
+    e.addEventListener('click', function(){ selectEngine(idx); });
+    e.addEventListener('keydown', function(ev){
+      if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); selectEngine(idx); }
+      if(ev.key==='ArrowDown'||ev.key==='ArrowRight'){ ev.preventDefault(); var n=engines[(idx+1)%engines.length]; n.focus(); selectEngine(+n.getAttribute('data-engine')); }
+      if(ev.key==='ArrowUp'||ev.key==='ArrowLeft'){ ev.preventDefault(); var p=engines[(idx-1+engines.length)%engines.length]; p.focus(); selectEngine(+p.getAttribute('data-engine')); }
+    });
+  });
+
+  /* --- Animated counters --- */
+  var statsWrap = document.getElementById('stats');
+  function animateCount(el){
+    var target = +el.getAttribute('data-target');
+    var suffix = el.getAttribute('data-suffix') || '';
+    var fmt = el.getAttribute('data-format');
+    var dur = 1800, start = null;
+    function fmtVal(v){
+      if(fmt==='k'){ return (v>=1000 ? (v/1000).toFixed(v%1000===0?0:1)+'K' : Math.round(v)); }
+      return Math.round(v).toLocaleString();
+    }
+    if(reduce){ el.firstChild ? null : 0; el.textContent = fmtVal(target); el.innerHTML = fmtVal(target)+'<span class="suf">'+suffix+'</span>'; return; }
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts-start)/dur, 1);
+      var eased = 1 - Math.pow(1-p, 3);
+      el.innerHTML = fmtVal(target*eased) + '<span class="suf">'+suffix+'</span>';
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if(statsWrap){
+    if('IntersectionObserver' in window){
+      var sio = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(en.isIntersecting){
+            statsWrap.querySelectorAll('.stat').forEach(function(s){ s.classList.add('in'); });
+            statsWrap.querySelectorAll('.count').forEach(animateCount);
+            sio.disconnect();
+          }
+        });
+      }, {threshold:0.4});
+      sio.observe(statsWrap);
+    } else {
+      statsWrap.querySelectorAll('.count').forEach(animateCount);
+    }
+  }
+
+  /* --- Subtle parallax on hero skyline --- */
+  var skyline = document.querySelector('.skyline');
+  if(skyline && !reduce){
+    window.addEventListener('scroll', function(){
+      var y = window.scrollY;
+      if(y < window.innerHeight){ skyline.style.transform = 'translateY('+(y*0.18)+'px)'; }
+    }, {passive:true});
+  }
+
+  /* ============================================================
+     BILINGUAL (EN / AR) TOGGLE — Arabic-ready RTL support
+     ============================================================ */
+  var ar = {
+    tagline:'نُمكّن التقدم', nav_ecosystem:'المنظومة', nav_about:'من نحن', nav_industries:'القطاعات',
+    nav_innovation:'الابتكار', nav_leadership:'القيادة', nav_news:'الرؤى', nav_careers:'الوظائف', nav_contact:'تواصل معنا',
+    hero_tag:'مؤسسة متنوعة · تقنية · توزيع',
+    hero_h1a:'نُمكّن التقدم في ', hero_h1b:'الشرق الأوسط', hero_h1c:'منذ 1974',
+    hero_sub:'قوة متنوعة تجمع بين التقنية وحلول المؤسسات والتوزيع الإقليمي — نهندس البنية التحتية والذكاء والابتكار الذي يدفع الأمم إلى الأمام.',
+    hero_cta1:'استكشف المجموعة', hero_cta2:'قصتنا', hero_scroll:'مرّر للاكتشاف',
+    trust_label:'شريك موثوق لقادة العالم',
+    eco_eyebrow:'المجموعة', eco_h:'مجموعة واحدة. محركات نمو متعددة.',
+    eco_lead:'منظومة متصلة من الشركات المتخصصة — كل منها رائدة في مجالها، لتشكّل معاً منصة متكاملة للتحول الإقليمي.',
+    eng1_h:'جمبو للتجزئة', eng1_d:'تجارب تقنية استهلاكية متميزة ومنصات تجزئة متعددة القنوات تخدم الملايين عبر الخليج.',
+    eng1_t1:'متعدد القنوات', eng1_t2:'علامات استهلاكية', eng1_t3:'تجزئة تجريبية',
+    eng2_h:'جمبو للمؤسسات', eng2_d:'بنية تحتية حيوية لتقنية المعلومات والسحابة والأمن السيبراني وخدمات التحول الرقمي للحكومات والمؤسسات.',
+    eng2_t1:'السحابة ومراكز البيانات', eng2_t2:'الأمن السيبراني', eng2_t3:'تكامل الأنظمة',
+    eng3_h:'جمبو للتوزيع', eng3_d:'شبكة التوزيع الأكثر ثقة في المنطقة — تنقل أبرز العلامات التقنية عبر 14 سوقاً بلوجستيات دقيقة.',
+    eng3_t1:'14 سوقاً', eng3_t2:'شبكة القنوات', eng3_t3:'لوجستيات ذكية',
+    about_eyebrow:'إرثنا', about_h:'خمسة عقود من بناء المستقبل.',
+    about_p1:'تأسست جمبو عام 1974 بقناعة راسخة بأن التقنية، حين تُطبّق برؤية وانضباط، قادرة على تحويل طريقة عيش المنطقة وعملها. وبعد نصف قرن، تحولت تلك القناعة إلى واحدة من أكثر المجموعات تنوعاً في الشرق الأوسط.',
+    about_p2:'من متجر واحد إلى منصة متكاملة تشمل التجزئة وتقنية المؤسسات والتوزيع، قصتنا هي قصة تجديد دؤوب — راسخة في الإرث ومدفوعة بالابتكار.',
+    about_cta:'اقرأ قصتنا الكاملة', about_badge_l:'عاماً من الريادة الإقليمية منذ 1974',
+    tl_eyebrow:'محطات', tl_h:'خط زمني من التقدم', tl_note:'لحظات فارقة صاغت مجموعة مؤسسية متنوعة.',
+    tl_1:'التأسيس في دبي — بداية المسيرة.', tl_2:'تأسيس شبكة التوزيع الإقليمية عبر دول الخليج.',
+    tl_3:'إطلاق قسم تقنية المؤسسات للعملاء الحكوميين.', tl_4:'توسيع قدرات السحابة ومراكز البيانات والأمن السيبراني.',
+    tl_5:'تأسيس ممارسة الابتكار في الذكاء الاصطناعي والبنية الذكية.', tl_6:'الذكرى الخمسون — العمل عبر 14 سوقاً إقليمياً.',
+    impact_eyebrow:'الأثر بالأرقام', impact_h:'حجم ينطق بذاته.',
+    stat1:'عاماً من الريادة الإقليمية', stat2:'سوقاً عبر المنطقة', stat3:'محترف ومتخصص', stat4:'شريك تقني عالمي',
+    ind_eyebrow:'القطاعات', ind_h:'قطاعات نُحوّلها.',
+    ind_lead:'خبرة قطاعية عميقة حيث تكون الأهم — لتحقيق نتائج ملموسة عبر أبرز صناعات المنطقة.',
+    ind1_h:'الحكومة والقطاع العام', ind1_p:'منصات حكومية رقمية وبنية تحتية للمدن الذكية.',
+    ind2_h:'البنوك والتمويل', ind2_p:'أنظمة آمنة ومرنة تُشغّل القطاع المالي في المنطقة.',
+    ind3_h:'الرعاية الصحية', ind3_p:'رعاية متصلة وبيانات ومنظومات صحية رقمية.',
+    ind4_h:'الطاقة والمرافق', ind4_p:'شبكات ذكية وتقنية تشغيلية على المستوى الوطني.',
+    ind5_h:'التعليم', ind5_p:'بيئات تعلّم جاهزة للمستقبل ومنصات تعليمية.',
+    ind6_h:'التجزئة والضيافة', ind6_p:'تجارة قائمة على التجربة وتقنية إشراك الضيوف.',
+    innov_eyebrow:'الابتكار وتقنيات المستقبل', innov_h:'نهندس تقنيات الغد.',
+    innov_lead:'ممارسة الابتكار لدينا تحوّل التقنيات الناشئة إلى ميزة مؤسسية — بمسؤولية وعلى نطاق واسع ومبنية للمنطقة.',
+    in1_h:'الذكاء الاصطناعي', in1_p:'ذكاء اصطناعي تطبيقي ومنصات توليدية وأتمتة ذكية تُعزز اتخاذ القرار البشري عبر المؤسسة. من العمليات التنبؤية إلى الخدمات الذاتية، ننشر الذكاء الاصطناعي بحوكمة وثقة في صميمه.',
+    in1_c:'ذكاء تطبيقي · توليدي · MLOps',
+    in2_h:'البنية التحتية الذكية', in2_p:'مدن متصلة ومبانٍ ذكية ومنظومات إنترنت الأشياء مصممة للمرونة والاستدامة.',
+    in2_c:'إنترنت الأشياء · مدن ذكية',
+    in3_h:'التحول الرقمي', in3_p:'تحديث شامل — من الأنظمة القديمة إلى مؤسسة سحابية قائمة على البيانات.', in3_c:'سحابة · بيانات · تجربة',
+    in4_h:'التقنيات الناشئة', in4_p:'بلوك تشين وواقع غامر وأبحاث جاهزة للكم تنتقل من المختبر إلى السوق.', in4_c:'ويب3 · واقع ممتد · كم',
+    in5_h:'المرونة السيبرانية', in5_p:'أمن انعدام الثقة ودفاع على مدار الساعة يحمي الأنظمة الحيوية للمنطقة.', in5_c:'انعدام الثقة · مركز عمليات',
+    lead_eyebrow:'القيادة', lead_h:'رؤية تُقاد من الأمام.',
+    lead_lead:'فريق قيادي يجمع بين عقود من البصيرة الإقليمية والخبرة المؤسسية العالمية.',
+    lead1_b:'الرئيس', lead1_n:'عبد الرحمن المنصوري', lead1_r:'رئيس المجموعة', lead1_bio:'يقود خمسة عقود من الرؤية والنمو الإقليمي.',
+    lead2_b:'الرئيس التنفيذي', lead2_n:'سارة الخليلي', lead2_r:'الرئيس التنفيذي للمجموعة', lead2_bio:'تقود أجندة المؤسسات والابتكار في المجموعة.',
+    lead3_b:'الرئيس التقني', lead3_n:'راجيف مينون', lead3_r:'الرئيس التقني للمجموعة', lead3_bio:'يهندس منصات تقنية المستقبل.',
+    lead4_b:'الرئيس المالي', lead4_n:'ليلى حداد', lead4_r:'الرئيس المالي للمجموعة', lead4_bio:'ترعى نمواً منضبطاً ومستداماً.',
+    sus_q:'«التقدم الذي يدوم هو التقدم المُشترك — مع موظفينا ومجتمعاتنا وكوكبنا.»', sus_a:'— التزام جمبو',
+    sus_eyebrow:'الاستدامة والمجتمع', sus_h:'نبني مستقبلاً مسؤولاً.',
+    sus_p:'نُرسّخ الاستدامة في طريقة عملنا واستثمارنا وابتكارنا — لدفع طموحات الحياد الكربوني في المنطقة مع خلق الفرص للمجتمعات التي نخدمها.',
+    sus_p1:'خارطة طريق للحياد الكربوني', sus_p2:'حياة وصلنا إليها عبر برامج مجتمعية', sus_p3:'طاقة متجددة عبر مرافقنا', sus_p4:'في مؤشرات الحوكمة البيئية الإقليمية',
+    news_eyebrow:'الأخبار والرؤى', news_h:'رؤى حول ما هو قادم.', news_all:'عرض جميع الرؤى',
+    news1_tag:'تقرير', news1_h:'حالة تبنّي الذكاء الاصطناعي في مؤسسات الخليج', news1_p:'بحثنا الرائد يستطلع أكثر من 400 قائد إقليمي حول كيفية إعادة الذكاء الاصطناعي التطبيقي تشكيل العمليات والمواهب والميزة التنافسية في 2026.',
+    news_read:'اقرأ التقرير',
+    news2_tag:'صحافة', news2_h:'جمبو للمؤسسات توسّع سعة السحابة السيادية', news2_p:'بصمة جديدة لمراكز البيانات الإقليمية لدعم إقامة البيانات للعملاء الحكوميين.', news_read2:'اقرأ المزيد',
+    news3_tag:'رؤية', news3_h:'لماذا البنية الذكية هي الحدود القادمة للمنطقة', news3_p:'المدن المتصلة تعيد تعريف جودة الحياة والاستدامة والمرونة الاقتصادية.', news_read3:'اقرأ المزيد',
+    car_eyebrow:'الوظائف', car_h:'ابنِ مستقبلك معنا.',
+    car_p:'انضم إلى مجموعة يلتقي فيها الطموح بالأثر. نوظّف عبر التقنية والمؤسسات والابتكار — لمن يريد صياغة مستقبل المنطقة.',
+    car_s1:'عضو فريق', car_s2:'جنسية', car_s3:'صاحب عمل إقليمي', car_cta:'استكشف الفرص',
+    role1_t:'مهندس ذكاء اصطناعي أول', role1_l:'دبي · المؤسسات', role1_tag:'دوام كامل',
+    role2_t:'مهندس حلول سحابية', role2_l:'أبوظبي · المؤسسات', role2_tag:'دوام كامل',
+    role3_t:'قائد الأمن السيبراني', role3_l:'الرياض · الابتكار', role3_tag:'دوام كامل',
+    role4_t:'مدير عمليات التوزيع', role4_l:'دبي · التوزيع', role4_tag:'دوام كامل',
+    close_eyebrow:'لنبنِ ما هو قادم', close_ha:'اشترك مع المجموعة ', close_hb:'التي تُمكّن المنطقة.',
+    close_p:'سواء كنت حكومة أو مؤسسة أو علامة عالمية تدخل الشرق الأوسط — لنصمم الفصل القادم معاً.',
+    close_cta1:'ابدأ محادثة', close_cta2:'حمّل الملف التعريفي',
+    foot_about:'قوة متنوعة في التقنية والمؤسسات والتوزيع تقود الشرق الأوسط منذ 1974.',
+    foot_c1:'المجموعة', foot_c1a:'أعمالنا', foot_c1b:'من نحن', foot_c1c:'القيادة', foot_c1d:'الاستدامة',
+    foot_c2:'استكشف', foot_c2a:'القطاعات', foot_c2b:'الابتكار', foot_c2c:'الأخبار والرؤى', foot_c2d:'الوظائف',
+    foot_c3:'تواصل', foot_c3a:'اتصل بنا', foot_c3c:'المركز الإعلامي', foot_c3d:'علاقات المستثمرين',
+    foot_copy:'© 2026 مجموعة جمبو. جميع الحقوق محفوظة. · دبي، الإمارات العربية المتحدة'
+  };
+
+  var en = {};
+  document.querySelectorAll('[data-i18n]').forEach(function(el){ en[el.getAttribute('data-i18n')] = el.innerHTML; });
+
+  var langToggle = document.getElementById('langToggle');
+  var isAr = false;
+  langToggle.addEventListener('click', function(){
+    isAr = !isAr;
+    var html = document.documentElement;
+    html.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+    html.setAttribute('lang', isAr ? 'ar' : 'en');
+    langToggle.textContent = isAr ? 'EN' : 'العربية';
+    var dict = isAr ? ar : en;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if(dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
